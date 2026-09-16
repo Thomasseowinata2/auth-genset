@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Auto Login Processing...</title>
+</head>
+<body>
+
+  <p>Memproses login otomatis, mohon tunggu...</p>
+
+  <form id="autoLoginForm" action="https://example.com/login-process" method="POST">
+    <input type="hidden" name="username" value="user_contoh">
+    <input type="hidden" name="password" value="password_contoh">
+  </form>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      document.getElementById("autoLoginForm").submit();
+    });
+  </script>
+
+</body>
+</html>
