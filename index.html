@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Data Center Monitor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-title">Data Center Monitor</div>
+      <div class="brand-site">Site JKT-01</div>
+    </div>
+
+    <div class="nav-label">Kategori</div>
+    <nav class="nav" id="nav"></nav>
+
+    <div class="sync">
+      <div class="sync-label">Terakhir sinkron</div>
+      <div class="sync-time">11 Sep 2026 · 09:42</div>
+    </div>
+  </aside>
+
+  <main class="content">
+    <header class="content-header">
+      <h1 id="categoryTitle"></h1>
+      <span class="content-count" id="categoryCount"></span>
+    </header>
+    <div class="grid" id="deviceGrid"></div>
+  </main>
+
+  <form id="gensetLoginForm" method="POST" target="_blank" hidden>
+    <input type="hidden" id="gensetUsername">
+    <input type="hidden" id="gensetPassword">
+  </form>
+
+  <script src="devices.js"></script>
+  <script src="credentials.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
