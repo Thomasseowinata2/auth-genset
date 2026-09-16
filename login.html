@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Masuk · Data Center Monitor</title>
+  <script src="session.js"></script>
+  <script>
+    if (loadCredentials()) location.replace("index.html" + location.hash);
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="login-page">
+
+  <main class="login-card">
+    <div class="brand">
+      <div class="brand-title">Data Center Monitor</div>
+      <div class="brand-site">Site JKT-01</div>
+    </div>
+
+    <!-- method="post" so credentials never land in the URL if JS fails to load -->
+    <form class="login-body" id="loginForm" method="post">
+      <h1 class="login-title">Masuk</h1>
+      <p class="login-description">Masukkan kredensial genset. Kredensial ini dipakai otomatis saat membuka web genset.</p>
+
+      <p class="login-error" id="loginError" hidden>Browser memblokir penyimpanan sesi, jadi kredensial tidak bisa disimpan. Cek pengaturan privasi browser.</p>
+
+      <label class="field">
+        <span class="field-label">Username</span>
+        <input class="field-input" id="username" name="username" autocomplete="username" required autofocus>
+      </label>
+
+      <label class="field">
+        <span class="field-label">Password</span>
+        <input class="field-input" id="password" name="password" type="password" autocomplete="current-password" required>
+      </label>
+
+      <button class="button-primary" type="submit">Masuk</button>
+    </form>
+  </main>
+
+  <p class="login-note">Kredensial hanya disimpan di tab browser ini, tidak dikirim ke server portal. Klik Keluar di sidebar untuk menghapusnya.</p>
+
+  <script src="login.js"></script>
+</body>
+</html>

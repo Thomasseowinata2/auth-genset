@@ -26,6 +26,7 @@ const CATEGORIES = [
     scheme: "https",
     path: "/",
     autoLogin: true,
+    loginFields: { username: "username", password: "password" },
     devices: [
       { name: "GENSET-A-01", location: "Gedung A · Rumah Genset", ip: "10.20.7.11" },
       { name: "GENSET-A-02", location: "Gedung A · Rumah Genset", ip: "10.20.7.12" },

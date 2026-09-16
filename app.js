@@ -5,6 +5,11 @@ const categoryCount = document.getElementById("categoryCount");
 const gensetLoginForm = document.getElementById("gensetLoginForm");
 const gensetUsername = document.getElementById("gensetUsername");
 const gensetPassword = document.getElementById("gensetPassword");
+const logoutButton = document.getElementById("logoutButton");
+
+function goToLogin() {
+  location.replace("login.html" + location.hash);
+}
 
 function element(tag, className, text) {
   const node = document.createElement(tag);
@@ -18,11 +23,16 @@ function deviceUrl(category, device) {
 }
 
 function openWithAutoLogin(category, device) {
+  const credentials = loadCredentials();
+  if (!credentials) {
+    goToLogin();
+    return;
+  }
   gensetLoginForm.action = deviceUrl(category, device);
-  gensetUsername.name = GENSET_LOGIN.usernameField;
-  gensetUsername.value = GENSET_LOGIN.username;
-  gensetPassword.name = GENSET_LOGIN.passwordField;
-  gensetPassword.value = GENSET_LOGIN.password;
+  gensetUsername.name = category.loginFields.username;
+  gensetUsername.value = credentials.username;
+  gensetPassword.name = category.loginFields.password;
+  gensetPassword.value = credentials.password;
   gensetLoginForm.submit();
 }
 
@@ -73,6 +83,11 @@ function render() {
   categoryCount.textContent = `${category.devices.length} perangkat`;
   grid.replaceChildren(...category.devices.map((device) => renderCard(category, device)));
 }
+
+logoutButton.addEventListener("click", () => {
+  clearCredentials();
+  goToLogin();
+});
 
 window.addEventListener("hashchange", render);
 render();

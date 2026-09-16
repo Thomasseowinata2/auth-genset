@@ -4,6 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Data Center Monitor</title>
+  <script src="session.js"></script>
+  <script>
+    if (!loadCredentials()) location.replace("login.html" + location.hash);
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
@@ -21,8 +25,11 @@
     <nav class="nav" id="nav"></nav>
 
     <div class="sync">
-      <div class="sync-label">Terakhir sinkron</div>
-      <div class="sync-time">11 Sep 2026 · 09:42</div>
+      <div>
+        <div class="sync-label">Terakhir sinkron</div>
+        <div class="sync-time">11 Sep 2026 · 09:42</div>
+      </div>
+      <button type="button" class="logout" id="logoutButton">Keluar</button>
     </div>
   </aside>
 
@@ -40,7 +47,6 @@
   </form>
 
   <script src="devices.js"></script>
-  <script src="credentials.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
