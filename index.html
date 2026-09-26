@@ -21,13 +21,16 @@
       <div class="brand-site">Site JKT-01</div>
     </div>
 
+    <div class="nav-label">Ringkasan</div>
+    <nav class="nav" id="overviewNav"></nav>
+
     <div class="nav-label">Kategori</div>
     <nav class="nav" id="nav"></nav>
 
     <div class="sync">
       <div>
         <div class="sync-label">Terakhir sinkron</div>
-        <div class="sync-time">11 Sep 2026 · 09:42</div>
+        <div class="sync-time" id="syncTime">—</div>
       </div>
       <button type="button" class="logout" id="logoutButton">Keluar</button>
     </div>
@@ -35,10 +38,19 @@
 
   <main class="content">
     <header class="content-header">
+      <a class="crumb" id="crumb" hidden></a>
       <h1 id="categoryTitle"></h1>
+      <span class="chip" id="contentBadge" hidden></span>
       <span class="content-count" id="categoryCount"></span>
+      <div class="content-actions" id="dashboardActions" hidden>
+        <span class="tag-dummy" title="Angka di dashboard masih data contoh, belum ditarik dari perangkat">Data dummy</span>
+        <span class="updated" id="updatedAt"></span>
+        <button type="button" class="refresh" id="refreshButton">Perbarui</button>
+      </div>
     </header>
-    <div class="grid" id="deviceGrid"></div>
+    <div class="grid" id="deviceGrid" hidden></div>
+    <div class="dashboard" id="dashboard" hidden></div>
+    <div class="dashboard" id="deviceDetail" hidden></div>
   </main>
 
   <form id="gensetLoginForm" method="POST" target="_blank" hidden>
@@ -47,6 +59,8 @@
   </form>
 
   <script src="devices.js"></script>
+  <script src="metrics.js"></script>
+  <script src="dashboard.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

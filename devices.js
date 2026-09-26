@@ -2,6 +2,7 @@ const CATEGORIES = [
   {
     id: "ups",
     label: "UPS",
+    brand: "Eaton",
     scheme: "https",
     path: "/login",
     autoLogin: false,
@@ -23,6 +24,7 @@ const CATEGORIES = [
   {
     id: "genset",
     label: "Genset",
+    brand: "Cummins", // belum dikonfirmasi ke perangkat
     scheme: "https",
     path: "/",
     autoLogin: true,
