@@ -5,7 +5,9 @@ const CATEGORIES = [
     brand: "Eaton",
     scheme: "https",
     path: "/login",
-    autoLogin: false,
+    autoLogin: true,
+    // Nama field belum dikonfirmasi ke perangkat.
+    loginFields: { username: "username", password: "password" },
     devices: [
       { name: "UPS-A1-01", location: "Gedung A · Lantai 1 · Ruang UPS", ip: "10.20.4.11" },
       { name: "UPS-A1-02", location: "Gedung A · Lantai 1 · Ruang UPS", ip: "10.20.4.12" },

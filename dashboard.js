@@ -497,7 +497,7 @@ function renderDetailActions(category, device) {
   open.rel = "noopener noreferrer";
   attachAutoLogin(open, category, device);
   const hint = category.autoLogin
-    ? "Login otomatis memakai kredensial sesi. Ctrl/Shift-klik untuk membuka tanpa login."
+    ? `Login otomatis memakai kredensial ${category.label} di sesi ini. Ctrl/Shift-klik untuk membuka tanpa login.`
     : "Membuka halaman login perangkat di tab baru.";
   row.append(open, element("span", "detail-hint", hint));
   return row;

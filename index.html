@@ -6,7 +6,7 @@
   <title>Data Center Monitor</title>
   <script src="session.js"></script>
   <script>
-    if (!loadCredentials()) location.replace("login.html" + location.hash);
+    if (!hasAnyCredentials()) location.replace("login.html" + location.hash);
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -53,9 +53,11 @@
     <div class="dashboard" id="deviceDetail" hidden></div>
   </main>
 
-  <form id="gensetLoginForm" method="POST" target="_blank" hidden>
-    <input type="hidden" id="gensetUsername">
-    <input type="hidden" id="gensetPassword">
+  <!-- Dipakai bersama semua kategori ber-login otomatis (UPS dan genset):
+       action, nama field, dan isinya diset ulang tiap kali perangkat dibuka. -->
+  <form id="autoLoginForm" method="POST" target="_blank" hidden>
+    <input type="hidden" id="autoLoginUsername">
+    <input type="hidden" id="autoLoginPassword">
   </form>
 
   <script src="devices.js"></script>

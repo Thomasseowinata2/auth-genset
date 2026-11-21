@@ -11,9 +11,9 @@ const refreshButton = document.getElementById("refreshButton");
 const syncTime = document.getElementById("syncTime");
 const categoryTitle = document.getElementById("categoryTitle");
 const categoryCount = document.getElementById("categoryCount");
-const gensetLoginForm = document.getElementById("gensetLoginForm");
-const gensetUsername = document.getElementById("gensetUsername");
-const gensetPassword = document.getElementById("gensetPassword");
+const autoLoginForm = document.getElementById("autoLoginForm");
+const autoLoginUsername = document.getElementById("autoLoginUsername");
+const autoLoginPassword = document.getElementById("autoLoginPassword");
 const logoutButton = document.getElementById("logoutButton");
 
 // Snapshot metrik terakhir, dipakai dashboard dan penanda peringatan di sidebar.
@@ -22,8 +22,11 @@ let snapshot = null;
 // tiap kali metrik di-refresh (kartu tidak bergantung pada metrik).
 let renderedCategory = null;
 
-function goToLogin() {
-  location.replace("login.html" + location.hash);
+// categoryId diisi kalau yang kurang cuma kredensial satu jenis perangkat,
+// supaya halaman login tidak meminta ulang kredensial yang sudah ada.
+function goToLogin(categoryId) {
+  const query = categoryId ? `?need=${encodeURIComponent(categoryId)}` : "";
+  location.replace("login.html" + query + location.hash);
 }
 
 function element(tag, className, text) {
@@ -37,21 +40,22 @@ function deviceUrl(category, device) {
   return `${category.scheme}://${device.ip}${category.path}`;
 }
 
+// Tiap kategori punya akunnya sendiri, jadi kredensial diambil per kategori.
 function openWithAutoLogin(category, device) {
-  const credentials = loadCredentials();
+  const credentials = loadCredentials(category.id);
   if (!credentials) {
-    goToLogin();
+    goToLogin(category.id);
     return;
   }
-  gensetLoginForm.action = deviceUrl(category, device);
-  gensetUsername.name = category.loginFields.username;
-  gensetUsername.value = credentials.username;
-  gensetPassword.name = category.loginFields.password;
-  gensetPassword.value = credentials.password;
-  gensetLoginForm.submit();
+  autoLoginForm.action = deviceUrl(category, device);
+  autoLoginUsername.name = category.loginFields.username;
+  autoLoginUsername.value = credentials.username;
+  autoLoginPassword.name = category.loginFields.password;
+  autoLoginPassword.value = credentials.password;
+  autoLoginForm.submit();
 }
 
-// Genset dibuka lewat POST form tersembunyi, bukan link biasa.
+// Perangkat ber-login otomatis dibuka lewat POST form tersembunyi, bukan link biasa.
 function attachAutoLogin(link, category, device) {
   if (!category.autoLogin) return;
   link.addEventListener("click", (event) => {

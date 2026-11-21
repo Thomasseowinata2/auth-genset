@@ -6,7 +6,11 @@
   <title>Masuk · Data Center Monitor</title>
   <script src="session.js"></script>
   <script>
-    if (loadCredentials()) location.replace("index.html" + location.hash);
+    // ?need=<kategori> sengaja meminta kredensial yang belum ada, jadi jangan
+    // dilempar balik ke portal walaupun kredensial lain sudah tersimpan.
+    if (!new URLSearchParams(location.search).has("need") && hasAnyCredentials()) {
+      location.replace("index.html" + location.hash);
+    }
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,26 +28,20 @@
     <!-- method="post" so credentials never land in the URL if JS fails to load -->
     <form class="login-body" id="loginForm" method="post">
       <h1 class="login-title">Masuk</h1>
-      <p class="login-description">Masukkan kredensial genset. Kredensial ini dipakai otomatis saat membuka web genset.</p>
+      <p class="login-description" id="loginDescription"></p>
 
       <p class="login-error" id="loginError" hidden>Browser memblokir penyimpanan sesi, jadi kredensial tidak bisa disimpan. Cek pengaturan privasi browser.</p>
 
-      <label class="field">
-        <span class="field-label">Username</span>
-        <input class="field-input" id="username" name="username" autocomplete="username" required autofocus>
-      </label>
-
-      <label class="field">
-        <span class="field-label">Password</span>
-        <input class="field-input" id="password" name="password" type="password" autocomplete="current-password" required>
-      </label>
+      <!-- Grup field per jenis perangkat diisi oleh login.js dari CATEGORIES. -->
+      <div id="loginFields"></div>
 
       <button class="button-primary" type="submit">Masuk</button>
     </form>
   </main>
 
-  <p class="login-note">Kredensial hanya disimpan di tab browser ini, tidak dikirim ke server portal. Klik Keluar di sidebar untuk menghapusnya.</p>
+  <p class="login-note">Kredensial hanya disimpan di tab browser ini, tidak dikirim ke server portal. Klik Keluar di sidebar untuk menghapus semuanya.</p>
 
+  <script src="devices.js"></script>
   <script src="login.js"></script>
 </body>
 </html>
